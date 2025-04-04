@@ -1,0 +1,1 @@
+C:\Users\Asus\Desktop\RUST\17\gui-modules\target\debug\gui-modules.exe: C:\Users\Asus\Desktop\RUST\17\gui-modules\src\main.rs C:\Users\Asus\Desktop\RUST\17\gui-modules\src\widgets\button.rs C:\Users\Asus\Desktop\RUST\17\gui-modules\src\widgets\label.rs C:\Users\Asus\Desktop\RUST\17\gui-modules\src\widgets\window.rs C:\Users\Asus\Desktop\RUST\17\gui-modules\src\widgets.rs
