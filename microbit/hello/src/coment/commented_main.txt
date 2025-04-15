@@ -1,0 +1,82 @@
+// Указываем, что программа не использует стандартную точку входа main
+#![no_main]
+// Указываем, что программа не использует стандартную библиотеку (для embedded)
+#![no_std]
+
+// Импортируем необходимые трейты и модули
+use core::fmt::Write;  // Трейт для форматированного вывода
+use cortex_m_rt::entry;  // Точка входа для Cortex-M
+use microbit::{self as _, hal::{delay::Delay, twim::Twim}, hal::uarte::{Baudrate, Parity, Uarte}};  // HAL для micro:bit
+use microbit::Board;  // Доска micro:bit
+
+// Импортируем драйвер для акселерометра/магнитометра LSM303AGR
+use lsm303agr::Lsm303agr;
+// Импортируем настройки частоты для I2C
+use microbit::pac::twim0::frequency::FREQUENCY_A;
+
+// Обработчик паники (в embedded часто просто зацикливаемся)
+#[panic_handler]
+fn panic_handler(_info: &core::panic::PanicInfo) -> ! {
+    loop {}
+}
+
+// Главная точка входа программы
+#[entry]
+fn main() -> ! {
+    // Инициализируем плату micro:bit
+    let board = Board::take().unwrap();
+    
+    // Настраиваем последовательный порт (UART) для вывода данных
+    let mut serial = Uarte::new(
+        board.UARTE0,  // Периферийный модуль UART
+        board.uart.into(),  // Пины для UART
+        Parity::EXCLUDED,  // Без контроля четности
+        Baudrate::BAUD115200,  // Скорость 115200 бод
+    );
+    
+    // Выводим приветственное сообщение
+    writeln!(serial, "Hello from microbit!").ok();
+
+    // Инициализируем I2C интерфейс (TWIM - Two Wire Interface Master)
+    let twim0 = Twim::new(board.TWIM0, board.i2c_internal.into(), FREQUENCY_A::K100);
+
+    // Создаем экземпляр датчика LSM303AGR с I2C интерфейсом
+    let mut sensor = Lsm303agr::new_with_i2c(twim0);
+    // Инициализируем датчик
+    sensor.init().unwrap();
+
+    // Создаем задержку на основе системного таймера
+    let mut delay = Delay::new(board.SYST);
+
+    // Настраиваем режим работы магнитометра
+    sensor
+        .set_mag_mode_and_odr(
+            &mut delay,  // Используем задержку
+            lsm303agr::MagMode::HighResolution,  // Высокое разрешение
+            lsm303agr::MagOutputDataRate::Hz10,  // Частота обновления 10 Гц
+        )
+        .unwrap();
+
+    // Переводим датчик в режим непрерывных измерений
+    let Ok(mut sensor) = sensor.into_mag_continuous() else {
+        panic!("Error enabling continuous mode");
+    };
+
+    // Основной цикл программы
+    loop {
+        // Проверяем, доступны ли новые данные с магнитометра
+        if sensor.mag_status().unwrap().xyz_new_data() {
+            // Получаем данные о магнитном поле
+            let data = sensor.magnetic_field().unwrap();
+            
+            // Выводим данные в последовательный порт
+            writeln!(
+                serial,
+                "Magnetic field: x {} y {} z {}",
+                data.x_nt(),  // X-компонента в нанотеслах
+                data.y_nt(),  // Y-компонента в нанотеслах
+                data.z_nt()   // Z-компонента в нанотеслах
+            ).ok();
+        }
+    }
+}

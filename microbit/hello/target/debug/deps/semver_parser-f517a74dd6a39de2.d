@@ -1,0 +1,11 @@
+/home/group2/Desktop/rust/microbit/hello/target/debug/deps/libsemver_parser-f517a74dd6a39de2.rmeta: /home/group2/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/semver-parser-0.7.0/src/lib.rs /home/group2/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/semver-parser-0.7.0/src/version.rs /home/group2/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/semver-parser-0.7.0/src/range.rs /home/group2/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/semver-parser-0.7.0/src/common.rs /home/group2/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/semver-parser-0.7.0/src/recognize.rs
+
+/home/group2/Desktop/rust/microbit/hello/target/debug/deps/libsemver_parser-f517a74dd6a39de2.rlib: /home/group2/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/semver-parser-0.7.0/src/lib.rs /home/group2/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/semver-parser-0.7.0/src/version.rs /home/group2/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/semver-parser-0.7.0/src/range.rs /home/group2/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/semver-parser-0.7.0/src/common.rs /home/group2/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/semver-parser-0.7.0/src/recognize.rs
+
+/home/group2/Desktop/rust/microbit/hello/target/debug/deps/semver_parser-f517a74dd6a39de2.d: /home/group2/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/semver-parser-0.7.0/src/lib.rs /home/group2/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/semver-parser-0.7.0/src/version.rs /home/group2/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/semver-parser-0.7.0/src/range.rs /home/group2/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/semver-parser-0.7.0/src/common.rs /home/group2/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/semver-parser-0.7.0/src/recognize.rs
+
+/home/group2/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/semver-parser-0.7.0/src/lib.rs:
+/home/group2/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/semver-parser-0.7.0/src/version.rs:
+/home/group2/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/semver-parser-0.7.0/src/range.rs:
+/home/group2/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/semver-parser-0.7.0/src/common.rs:
+/home/group2/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/semver-parser-0.7.0/src/recognize.rs:
